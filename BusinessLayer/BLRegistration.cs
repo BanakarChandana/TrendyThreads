@@ -16,7 +16,7 @@ namespace ThrendyThreads.BusinessLayer
                 new SqlParameter("@UserName", model.UserName),
                 new SqlParameter("@Password", model.Password),
                 new SqlParameter("@Email", model.Email),
-                new SqlParameter("@Image", model.Image),
+                new SqlParameter("@Image", model.Image ?? (object)DBNull.Value),
                 new SqlParameter("@Role", model.Role)
             };
 

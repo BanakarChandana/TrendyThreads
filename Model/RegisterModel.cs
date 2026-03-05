@@ -10,7 +10,7 @@
 
         public string Email { get; set; }
 
-        public string Image { get; set; }
+        public byte[]? Image { get; set; }   // fix
 
         public string Role { get; set; }
     }
