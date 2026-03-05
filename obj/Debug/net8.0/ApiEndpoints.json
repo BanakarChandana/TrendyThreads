@@ -1,5 +1,21 @@
 [
   {
+    "ContainingType": "ThrendyThreads.Controllers.RegistrationController",
+    "Method": "RegisterUser",
+    "RelativePath": "api/Registration/RegisterUser",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "ThrendyThreads.Model.RegisterModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ThrendyThreads.Controllers.WeatherForecastController",
     "Method": "Get",
     "RelativePath": "WeatherForecast",

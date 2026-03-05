@@ -5,6 +5,22 @@
     {
       "AbsoluteMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|c:\\users\\user\\source\\repos\\threndythreads\\model\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|solutionrelative:model\\registermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|c:\\users\\user\\source\\repos\\threndythreads\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|solutionrelative:appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|c:\\users\\user\\source\\repos\\threndythreads\\businesslayer\\blregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|solutionrelative:businesslayer\\blregistration.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|c:\\users\\user\\source\\repos\\threndythreads\\controllers\\registrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|solutionrelative:controllers\\registrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|c:\\users\\user\\source\\repos\\threndythreads\\datalayer\\sqlserverdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F636927-E53A-48F9-AB4F-F1AD22638215}|ThrendyThreads.csproj|solutionrelative:datalayer\\sqlserverdb.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 555,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -30,13 +46,65 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "appsettings.Development.json",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\appsettings.Development.json",
+              "RelativeToolTip": "appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-05T16:50:38.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegistrationController.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\Controllers\\RegistrationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\RegistrationController.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\Controllers\\RegistrationController.cs",
+              "RelativeToolTip": "Controllers\\RegistrationController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA0AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T16:37:47.959Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SqlServerDB.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\DataLayer\\SqlServerDB.cs",
+              "RelativeDocumentMoniker": "DataLayer\\SqlServerDB.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\DataLayer\\SqlServerDB.cs",
+              "RelativeToolTip": "DataLayer\\SqlServerDB.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAiwFUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T16:24:02.649Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BLRegistration.cs",
+              "DocumentMoniker": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\BusinessLayer\\BLRegistration.cs",
+              "RelativeDocumentMoniker": "BusinessLayer\\BLRegistration.cs",
+              "ToolTip": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\BusinessLayer\\BLRegistration.cs",
+              "RelativeToolTip": "BusinessLayer\\BLRegistration.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-05T16:17:48.271Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
               "Title": "RegisterModel.cs",
               "DocumentMoniker": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\Model\\RegisterModel.cs",
               "RelativeDocumentMoniker": "Model\\RegisterModel.cs",
               "ToolTip": "C:\\Users\\user\\source\\repos\\ThrendyThreads\\Model\\RegisterModel.cs",
               "RelativeToolTip": "Model\\RegisterModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-03-05T16:15:00.219Z",
               "EditorCaption": ""
