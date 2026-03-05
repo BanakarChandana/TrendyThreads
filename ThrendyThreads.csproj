@@ -11,7 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
     <Folder Include="BusinessLayer\" />
     <Folder Include="DataLayer\" />
   </ItemGroup>
