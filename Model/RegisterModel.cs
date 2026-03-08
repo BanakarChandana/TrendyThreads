@@ -12,6 +12,5 @@
 
         public byte[]? Image { get; set; }   // fix
 
-        public string Role { get; set; }
     }
 }

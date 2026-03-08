@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ThrendyThreads")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7abedb5aa143d4f653eeb3b6407e0675485a4113")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f80b3ce205d70fbf82c2373c7e8ea4c9607437cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("ThrendyThreads")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ThrendyThreads")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
