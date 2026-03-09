@@ -22,7 +22,7 @@ namespace ThrendyThreads.Controllers
                 return BadRequest(result);
         }
 
-        // GET PRODUCTS
+        // GET ALL PRODUCTS
         [HttpGet("GetAllProducts")]
         public IActionResult GetAllProducts()
         {
@@ -34,6 +34,7 @@ namespace ThrendyThreads.Controllers
             return Ok(products);
         }
 
+        // GET PRODUCT BY ID
         [HttpGet("GetProductById/{id}")]
         public IActionResult GetProductById(int id)
         {
@@ -44,6 +45,19 @@ namespace ThrendyThreads.Controllers
 
             return Ok(product);
         }
+
+        // GET RECENT 4 PRODUCTS
+        [HttpGet("GetRecentProducts")]
+        public IActionResult GetRecentProducts()
+        {
+            var products = bl.GetRecentProducts();
+
+            if (products == null || products.Count == 0)
+                return NotFound("No recent products found");
+
+            return Ok(products);
+        }
+
         // DELETE PRODUCT
         [HttpDelete("DeleteProduct/{id}")]
         public IActionResult DeleteProduct(int id)

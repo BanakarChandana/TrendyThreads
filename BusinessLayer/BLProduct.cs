@@ -83,12 +83,38 @@ namespace ThrendyThreads.BusinessLayer
 
             return product;
         }
+
+        // GET RECENT PRODUCTS (TOP 4)
+        public List<ProductModel> GetRecentProducts()
+        {
+            List<ProductModel> products = new List<ProductModel>();
+
+            DataTable dt = db.GetDataTable("GetRecentProducts", CommandType.StoredProcedure);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                ProductModel product = new ProductModel
+                {
+                    ProductId = Convert.ToInt32(row["ProductId"]),
+                    ProductName = row["ProductName"].ToString(),
+                    ProductImage = row["ProductImage"] as byte[],
+                    Price = Convert.ToDecimal(row["Price"]),
+                    Category = row["Category"].ToString(),
+                    DesignerId = Convert.ToInt32(row["DesignerId"])
+                };
+
+                products.Add(product);
+            }
+
+            return products;
+        }
+
         // DELETE PRODUCT
         public string DeleteProduct(int id)
         {
             SqlParameter[] param = new SqlParameter[]
             {
-        new SqlParameter("@ProductId", id)
+                new SqlParameter("@ProductId", id)
             };
 
             int result = db.ExecuteNonQuery("sp_DeleteProduct", CommandType.StoredProcedure, param);
