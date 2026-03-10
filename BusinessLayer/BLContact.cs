@@ -28,5 +28,30 @@ namespace ThrendyThreads.BusinessLayer
             else
                 return "Contact Submission Failed";
         }
+        // GET ALL CONTACTS
+        public List<ContactModel> GetAllContacts()
+        {
+            List<ContactModel> contacts = new List<ContactModel>();
+
+            DataTable dt = db.GetDataTable("sp_GetAllContacts", CommandType.StoredProcedure);
+
+            foreach (DataRow row in dt.Rows)
+            {
+                ContactModel contact = new ContactModel
+                {
+                    ContactId = Convert.ToInt32(row["ContactId"]),
+                    YourName = row["YourName"].ToString(),
+                    EmailAddress = row["EmailAddress"].ToString(),
+                    ReasonForContact = row["ReasonForContact"].ToString(),
+                    Subject = row["Subject"].ToString(),
+                    YourMessage = row["YourMessage"].ToString()
+                };
+
+                contacts.Add(contact);
+            }
+
+            return contacts;
+        }
+
     }
 }

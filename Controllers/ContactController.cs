@@ -10,6 +10,7 @@ namespace ThrendyThreads.Controllers
     {
         BLContact bl = new BLContact();
 
+        // POST CONTACT
         [HttpPost("AddContact")]
         public IActionResult AddContact([FromBody] ContactModel contact)
         {
@@ -19,6 +20,17 @@ namespace ThrendyThreads.Controllers
                 return Ok(result);
             else
                 return BadRequest(result);
+        }
+
+        [HttpGet("GetAllContacts")]
+        public IActionResult GetAllContacts()
+        {
+            var contacts = bl.GetAllContacts();
+
+            if (contacts == null || contacts.Count == 0)
+                return NotFound("No contacts found");
+
+            return Ok(contacts);
         }
     }
 }

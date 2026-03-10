@@ -10,16 +10,19 @@ namespace ThrendyThreads.Controllers
     {
         BLProduct bl = new BLProduct();
 
-        // POST PRODUCT
+        // ADD PRODUCT
         [HttpPost("AddProduct")]
         public IActionResult AddProduct([FromBody] ProductModel product)
         {
+            if (product == null)
+                return BadRequest("Invalid product data");
+
             var result = bl.InsertProduct(product);
 
             if (result.Contains("Successfully"))
-                return Ok(result);
-            else
-                return BadRequest(result);
+                return Ok(new { message = result });
+
+            return BadRequest(new { message = result });
         }
 
         // GET ALL PRODUCTS
@@ -29,7 +32,7 @@ namespace ThrendyThreads.Controllers
             var products = bl.GetAllProducts();
 
             if (products == null || products.Count == 0)
-                return NotFound("No products found");
+                return NotFound(new { message = "No products found" });
 
             return Ok(products);
         }
@@ -38,22 +41,40 @@ namespace ThrendyThreads.Controllers
         [HttpGet("GetProductById/{id}")]
         public IActionResult GetProductById(int id)
         {
+            if (id <= 0)
+                return BadRequest("Invalid Product Id");
+
             var product = bl.GetProductById(id);
 
             if (product == null)
-                return NotFound("Product not found");
+                return NotFound(new { message = "Product not found" });
 
             return Ok(product);
         }
 
-        // GET RECENT 4 PRODUCTS
+        // GET PRODUCTS BY DESIGNER ID
+        [HttpGet("GetProductsByDesignerId/{designerId}")]
+        public IActionResult GetProductsByDesignerId(int designerId)
+        {
+            if (designerId <= 0)
+                return BadRequest("Invalid Designer Id");
+
+            var products = bl.GetProductsByDesignerId(designerId);
+
+            if (products == null || products.Count == 0)
+                return NotFound(new { message = "No products found for this designer" });
+
+            return Ok(products);
+        }
+
+        // GET RECENT PRODUCTS (TOP 4)
         [HttpGet("GetRecentProducts")]
         public IActionResult GetRecentProducts()
         {
             var products = bl.GetRecentProducts();
 
             if (products == null || products.Count == 0)
-                return NotFound("No recent products found");
+                return NotFound(new { message = "No recent products found" });
 
             return Ok(products);
         }
@@ -62,12 +83,15 @@ namespace ThrendyThreads.Controllers
         [HttpDelete("DeleteProduct/{id}")]
         public IActionResult DeleteProduct(int id)
         {
+            if (id <= 0)
+                return BadRequest("Invalid Product Id");
+
             var result = bl.DeleteProduct(id);
 
             if (result.Contains("Successfully"))
-                return Ok(result);
-            else
-                return NotFound(result);
+                return Ok(new { message = result });
+
+            return NotFound(new { message = result });
         }
     }
 }
