@@ -30,7 +30,28 @@ namespace ThrendyThreads.Controllers
             }
             catch (Exception ex)
             {
-                // Optionally log ex.Message here
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+        // POST: api/Registration/AddDesignerWithRegistration
+        [HttpPost("AddDesignerWithRegistration")]
+        public IActionResult AddDesignerWithRegistration([FromBody] AdminDesignerModel model)
+        {
+            if (model == null)
+                return BadRequest(new { message = "Invalid designer data" });
+
+            try
+            {
+                string result = _objBL.InsertDesignerWithRegistration(model);
+
+                if (result.Contains("Successfully"))
+                    return Ok(new { message = result });
+
+                return BadRequest(new { message = result });
+            }
+            catch (Exception ex)
+            {
                 return BadRequest(new { error = ex.Message });
             }
         }
@@ -46,7 +67,6 @@ namespace ThrendyThreads.Controllers
                 if (users == null || users.Count == 0)
                     return NotFound(new { message = "No users found" });
 
-                // Only return safe fields
                 var result = users.Select(u => new
                 {
                     u.UserName,
@@ -58,7 +78,6 @@ namespace ThrendyThreads.Controllers
             }
             catch (Exception ex)
             {
-                // Optionally log ex.Message here
                 return BadRequest(new { error = ex.Message });
             }
         }
