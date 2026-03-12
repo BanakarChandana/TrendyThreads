@@ -13,5 +13,7 @@
         public string Category { get; set; }
 
         public int DesignerId { get; set; }
+
+        public int CartId { get; set; }   // Added for Cart
     }
 }
