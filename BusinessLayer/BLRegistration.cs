@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Data;
 using ThrendyThreads.DataLayer;
 using ThrendyThreads.Model;
@@ -10,7 +11,9 @@ namespace ThrendyThreads.BusinessLayer
     {
         private readonly SqlServerDB db = new SqlServerDB();
 
+        // -------------------------------------------------
         // INSERT USER (Registration Table)
+        // -------------------------------------------------
         public int InsertRegistration(RegisterModel model)
         {
             SqlParameter[] param = new SqlParameter[]
@@ -19,8 +22,7 @@ namespace ThrendyThreads.BusinessLayer
                 new SqlParameter("@Password", model.Password),
                 new SqlParameter("@Email", model.Email),
                 new SqlParameter("@Image", model.Image ?? (object)DBNull.Value),
-                new SqlParameter("@Role","user")
-
+                new SqlParameter("@Role", "user")
             };
 
             return db.ExecuteNonQuery(
@@ -30,7 +32,9 @@ namespace ThrendyThreads.BusinessLayer
             );
         }
 
+        // -------------------------------------------------
         // GET ALL USERS
+        // -------------------------------------------------
         public List<RegisterModel> GetAllUsers()
         {
             List<RegisterModel> userList = new List<RegisterModel>();
@@ -58,46 +62,55 @@ namespace ThrendyThreads.BusinessLayer
             return userList;
         }
 
-        // INSERT DESIGNER + REGISTRATION (Admin Dashboard Requirement)
+        // -------------------------------------------------
+        // INSERT DESIGNER + REGISTRATION (Admin Dashboard)
+        // -------------------------------------------------
         public string InsertDesignerWithRegistration(AdminDesignerModel model)
         {
-            // Insert Registration
-            SqlParameter[] regParam = new SqlParameter[]
+            try
             {
-                new SqlParameter("@UserName", model.UserName),
-                new SqlParameter("@Password", model.Password),
-                new SqlParameter("@Email", model.Email),
-                new SqlParameter("@Image", model.Image ?? (object)DBNull.Value),
-                new SqlParameter("@Role","designer")
-            };
+                // Insert Registration
+                SqlParameter[] regParam = new SqlParameter[]
+                {
+                    new SqlParameter("@UserName", model.UserName),
+                    new SqlParameter("@Password", model.Password),
+                    new SqlParameter("@Email", model.Email),
+                    new SqlParameter("@Image", model.Image ?? (object)DBNull.Value),
+                    new SqlParameter("@Role","designer")
+                };
 
-            int regResult = db.ExecuteNonQuery(
-                "sp_InsertRegistration",
-                CommandType.StoredProcedure,
-                regParam
-            );
+                int regResult = db.ExecuteNonQuery(
+                    "sp_InsertRegistration",
+                    CommandType.StoredProcedure,
+                    regParam
+                );
 
-            // Insert Designer
-            SqlParameter[] desParam = new SqlParameter[]
+                // Insert Designer
+                SqlParameter[] desParam = new SqlParameter[]
+                {
+                    new SqlParameter("@DesignerName", model.DesignerName),
+                    new SqlParameter("@DesignerEmail", model.Email),
+                    new SqlParameter("@DesignerImage", model.Image ?? (object)DBNull.Value),
+                    new SqlParameter("@AboutDesigner", model.AboutDesigner),
+                    new SqlParameter("@PhoneNumber", model.PhoneNumber),
+                    new SqlParameter("@Address", model.Address) 
+                };
+
+                int desResult = db.ExecuteNonQuery(
+                    "sp_InsertDesigner",
+                    CommandType.StoredProcedure,
+                    desParam
+                );
+
+                if (regResult > 0 && desResult > 0)
+                    return "Designer and Registration Added Successfully";
+
+                return "Insert Failed";
+            }
+            catch (Exception ex)
             {
-                new SqlParameter("@DesignerName", model.DesignerName),
-                new SqlParameter("@DesignerEmail", model.Email),
-                new SqlParameter("@DesignerImage", model.DesignerImage ?? (object)DBNull.Value),
-                new SqlParameter("@AboutDesigner", model.AboutDesigner),
-                new SqlParameter("@PhoneNumber", model.PhoneNumber),
-                new SqlParameter("@Address", model.Address)
-            };
-
-            int desResult = db.ExecuteNonQuery(
-                "sp_InsertDesigner",
-                CommandType.StoredProcedure,
-                desParam
-            );
-
-            if (regResult > 0 && desResult > 0)
-                return "Designer and Registration Added Successfully";
-
-            return "Insert Failed";
+                return ex.Message;
+            }
         }
     }
 }
