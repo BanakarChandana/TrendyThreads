@@ -20,11 +20,12 @@ namespace ThrendyThreads
             // CORS configuration for React
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("AllowReact", policy =>
+                options.AddPolicy("MyCorsPolicy", policy =>
                 {
-                    policy.WithOrigins("http://localhost:5173")
+                    policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
+                          .AllowAnyHeader()
                           .AllowAnyMethod()
-                          .AllowAnyHeader();
+                          .AllowCredentials();
                 });
             });
 
@@ -41,7 +42,7 @@ namespace ThrendyThreads
             app.UseHttpsRedirection();
 
             // Enable CORS
-            app.UseCors("AllowReact");
+            app.UseCors("MyCorsPolicy");
 
             app.UseAuthorization();
 

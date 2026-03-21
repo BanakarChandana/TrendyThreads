@@ -112,5 +112,77 @@ namespace ThrendyThreads.BusinessLayer
                 return ex.Message;
             }
         }
+        // -------------------------------------------------
+        // GET USERS (ONLY ROLE = USER)
+        // -------------------------------------------------
+        public List<RegisterModel> GetUsers()
+        {
+            List<RegisterModel> list = new List<RegisterModel>();
+
+            try
+            {
+                DataTable dt = db.GetDataTable(
+                    "sp_GetUsersByRole",
+                    CommandType.StoredProcedure
+                );
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        list.Add(new RegisterModel
+                        {
+                            UserId = Convert.ToInt32(row["UserId"]),
+                            UserName = row["UserName"]?.ToString(),
+                            Email = row["Email"]?.ToString(),
+                            Image = row["Image"] != DBNull.Value ? (byte[])row["Image"] : null,
+                            
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error fetching users: " + ex.Message);
+            }
+
+            return list;
+        }
+        // -------------------------------------------------
+        // GET DESIGNERS (ONLY ROLE = DESIGNER)
+        // -------------------------------------------------
+        public List<RegisterModel> GetDesigners()
+        {
+            List<RegisterModel> list = new List<RegisterModel>();
+
+            try
+            {
+                DataTable dt = db.GetDataTable(
+                    "sp_GetDesigners",
+                    CommandType.StoredProcedure
+                );
+
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        list.Add(new RegisterModel
+                        {
+                            UserId = Convert.ToInt32(row["UserId"]),
+                            UserName = row["UserName"]?.ToString(),
+                            Email = row["Email"]?.ToString(),
+                            Image = row["Image"] != DBNull.Value ? (byte[])row["Image"] : null,
+                  
+                        });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error fetching designers: " + ex.Message);
+            }
+
+            return list;
+        }
     }
 }
