@@ -1,4 +1,7 @@
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using ThrendyThreads.DataLayer;
 
 namespace ThrendyThreads
 {
@@ -8,30 +11,44 @@ namespace ThrendyThreads
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
 
-            // Add Controller support
-            builder.Services.AddControllers();
+                        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                        ValidAudience = builder.Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])
+                        )
+                    };
+                });
 
-            // Swagger services
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            builder.Services.AddAuthorization();
 
-            // CORS configuration for React
             builder.Services.AddCors(options =>
             {
-                options.AddPolicy("MyCorsPolicy", policy =>
+                options.AddPolicy("AllowSpecificOrigins", policy =>
                 {
-                    policy.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost")
-                          .AllowAnyHeader()
+                    policy.AllowAnyOrigin()
                           .AllowAnyMethod()
-                          .AllowCredentials();
+                          .AllowAnyHeader();
                 });
             });
 
-            var app = builder.Build();
+            builder.Services.AddScoped<SqlServerDB>();
 
-            // Configure the HTTP request pipeline.
+            builder.Services.AddControllers();
+
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
             {
@@ -41,12 +58,11 @@ namespace ThrendyThreads
 
             app.UseHttpsRedirection();
 
-            // Enable CORS
-            app.UseCors("MyCorsPolicy");
+            app.UseCors("AllowSpecificOrigins");
 
+            app.UseAuthentication();  
             app.UseAuthorization();
 
-            // Map Controllers
             app.MapControllers();
 
             app.Run();
