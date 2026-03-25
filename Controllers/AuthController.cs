@@ -47,9 +47,18 @@ namespace ThrendyThreads.Controllers
                 if (dbPassword != loginRequest.Password)
                     return Unauthorized(new { message = "Invalid password" });
 
+                int userId = Convert.ToInt32(userRow["UserId"]);
                 string username = userRow["UserName"]?.ToString();
                 string email = userRow["Email"]?.ToString();
                 string role = userRow["Role"]?.ToString() ?? "User";
+
+                string imageBase64 = null;
+
+                if (userRow["Image"] != DBNull.Value)
+                {
+                    byte[] imageBytes = (byte[])userRow["Image"];
+                    imageBase64 = Convert.ToBase64String(imageBytes);
+                }
 
                 var token = GenerateJwtToken(email, role);
 
@@ -58,9 +67,11 @@ namespace ThrendyThreads.Controllers
                     token,
                     user = new
                     {
+                        userId,
                         username,
                         email,
-                        role
+                        role,
+                        image = imageBase64,
                     }
                 });
             }

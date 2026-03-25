@@ -142,7 +142,7 @@ namespace ThrendyThreads.Controllers
         {
             try
             {
-                if (productId <= 0 || cartId <= 0)
+                if (productId <= 0)
                     return BadRequest(new { message = "Invalid ProductId or CartId" });
 
                 var result = bl.UpdateCart(productId, cartId);
